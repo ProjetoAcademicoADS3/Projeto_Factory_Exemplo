@@ -8,6 +8,7 @@ package br.com.rogerio.app;
 import br.com.rogerio.model.Carro;
 import br.com.rogerio.model.FabricaDeCarros;
 import br.com.rogerio.enumeration.EnumCarros;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -117,16 +118,15 @@ public class FabricaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFabricarObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFabricarObjetoActionPerformed
-
-        fabrica = FabricaDeCarros.getInstance();
-
-        Carro objeto = fabrica.getCarro(jComboBoxObjetos.getSelectedItem().toString());
-
-        jTextAreaSaidaDosObjetos.setText(fabrica.imprimir(objeto));
-
-        jComboBoxObjetos.setSelectedIndex(0);
-
-
+        try {
+            fabrica = FabricaDeCarros.getInstance();
+            Carro objeto = fabrica.getCarro(jComboBoxObjetos.getSelectedItem().toString());
+            jTextAreaSaidaDosObjetos.setText(fabrica.imprimir(objeto));
+            jComboBoxObjetos.setSelectedIndex(0);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        }
+        
     }//GEN-LAST:event_jButtonFabricarObjetoActionPerformed
 
     /**
